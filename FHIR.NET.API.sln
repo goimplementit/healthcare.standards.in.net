@@ -1,0 +1,17 @@
+
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 2012
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FHIR.NET.API", "FHIR.NET.API\FHIR.NET.API.csproj", "{480B40E8-8ED6-4028-8C6C-437001CB5294}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|x86 = Debug|x86
+		Release|x86 = Release|x86
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{480B40E8-8ED6-4028-8C6C-437001CB5294}.Debug|x86.ActiveCfg = Debug|x86
+		{480B40E8-8ED6-4028-8C6C-437001CB5294}.Debug|x86.Build.0 = Debug|x86
+		{480B40E8-8ED6-4028-8C6C-437001CB5294}.Release|x86.ActiveCfg = Release|x86
+		{480B40E8-8ED6-4028-8C6C-437001CB5294}.Release|x86.Build.0 = Release|x86
+	EndGlobalSection
+EndGlobal
