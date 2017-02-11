@@ -9,7 +9,7 @@ namespace FHIR.NET.API
 		/*
 		 * Config
 		 */
-		const String host = "http://spark.furore.com/fhir";
+		const String host = "http://spark-dstu2.furore.com/fhir";
 
 		public static void Main(string[] args)
 		{
@@ -33,7 +33,7 @@ namespace FHIR.NET.API
 
 			const String p2GivenName = "Jane";
 			const String p2FamilyName = "Doe";
-			var p2 = pCreator.CreatePatient(client, p2GivenName, p2FamilyName);
+			pCreator.CreatePatient(client, p2GivenName, p2FamilyName);
 
 			/*
 			 * Find patient by id
@@ -65,8 +65,13 @@ namespace FHIR.NET.API
 				toSearchFor.Add("_count", "1");
 				toSearchFor.Add("_sort:desc", "_lastUpdated");
 				var res = client.Search<Patient>(toSearchFor);
-				Console.WriteLine("Search by name name sort by lastupdated and limit to 1 result: " + (res.Entry[0].Resource as Patient).Name[0]);
+				Console.WriteLine("Search by name, sort by lastupdated and limit to 1 result: " + (res.Entry[0].Resource as Patient).Name[0]);
 			}
+
+			/*
+			 * Find patient with the name John Doe which has been updated 5 minutes ago
+			 */
+
 		}
 	}
 
