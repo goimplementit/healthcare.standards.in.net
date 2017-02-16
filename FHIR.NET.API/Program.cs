@@ -9,7 +9,7 @@ namespace FHIR.NET.API
 		/*
 		 * Config
 		 */
-		const String host = "http://spark-dstu2.furore.com/fhir";
+		const string host = "http://spark-dstu2.furore.com/fhir";
 
 		public static void Main(string[] args)
 		{
@@ -27,12 +27,12 @@ namespace FHIR.NET.API
 			 */
 			var pCreator = new PatientCreator();
 
-			const String p1GivenName = "John";
-			const String p1FamilyName = "Doe";
+			const string p1GivenName = "John";
+			const string p1FamilyName = "Doe";
 			var p1 = pCreator.CreatePatient(client, p1GivenName, p1FamilyName);
 
-			const String p2GivenName = "Jane";
-			const String p2FamilyName = "Doe";
+			const string p2GivenName = "Jane";
+			const string p2FamilyName = "Doe";
 			pCreator.CreatePatient(client, p2GivenName, p2FamilyName);
 
 			/*
@@ -71,7 +71,26 @@ namespace FHIR.NET.API
 			/*
 			 * Find patient with the name John Doe which has been updated 5 minutes ago
 			 */
+			{
+				var toSearchFor = new SearchParams();
+				toSearchFor.Add("given", p1GivenName);
+				toSearchFor.Add("family", p1FamilyName);
+				toSearchFor.Add("_lastUpdated", ">=" + DateTime.Now.AddMinutes(-5).ToString("yyyy-MM-ddTdd:HH:mm"));
+				var res = client.Search<Patient>(toSearchFor);
+				Console.WriteLine("Search by name, get the ones lastupdated at most 5 minutes ago: " + res.Entry.Count);
+			}
 
+			/*
+			 * Find all observations for patients with the name John
+			 * 
+			 * http://spark.furore.com/fhir/Observation?subject.name=John
+			 */
+			{
+				var toSearchFor = new SearchParams();
+				toSearchFor.Add("subject.name", p1GivenName);
+				var res = client.Search<Observation>(toSearchFor);
+				Console.WriteLine("Find all observations for patients with the name John: " + res.Entry.Count);
+			}
 		}
 	}
 
