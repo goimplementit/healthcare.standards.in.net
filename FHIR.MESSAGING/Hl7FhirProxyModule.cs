@@ -4,8 +4,10 @@ using System.Net.Http.Headers;
 using System.Text;
 using System.Threading.Tasks;
 using Hl7.Fhir.Rest;
+using Hl7.Fhir.Model;
 using Nancy;
 using Nancy.Extensions;
+using Hl7.Fhir.Serialization;
 
 namespace Messaging
 {
@@ -18,7 +20,6 @@ namespace Messaging
 		private const string CONTENT_TYPE = "application/json";
 
 		static HttpClient fhirServerProxyClient = new HttpClient();
-		static HttpClient notificationClient = new HttpClient();
 
 		public Hl7FhirProxyModule()
 		{
@@ -42,7 +43,7 @@ namespace Messaging
 				var body = Request.Body.AsString();
 				var response = await PostAsync(path, body);
 
-				notify("I just created something");
+				notify(path, body);
 
 				return await response.Content.ReadAsStringAsync();
 			};
@@ -65,14 +66,21 @@ namespace Messaging
 			return await fhirServerProxyClient.PutAsync(path, content);
 		}
 
-		private void notify(string msg)
+		private void notify(string path, string str)
 		{
-			notificationClient.BaseAddress = new Uri("http://localhost:2575");
-			notificationClient.DefaultRequestHeaders.Accept.Clear();
-			notificationClient.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue(CONTENT_TYPE));
+			var bundle = new Bundle();
+			bundle.Id = Uuid.Generate().ToString();
 
-			var content = new StringContent(msg, Encoding.UTF8, "text/plain");
-			notificationClient.PostAsync("/", content);
+			var headerId = Uuid.Generate().ToString();
+			var header = new MessageHeader();
+			header.Id = headerId;
+			bundle.AddResourceEntry(header, "MessageHeader/" + headerId);
+
+			var resource = new FhirJsonParser().Parse<Resource>(str);
+			bundle.AddResourceEntry(resource, path);
+
+			var bundleAsJson = FhirSerializer.SerializeResourceToJson(bundle);
+			Console.WriteLine(bundleAsJson);
 		}
 	}
 }
