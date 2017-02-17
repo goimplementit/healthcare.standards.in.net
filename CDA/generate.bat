@@ -1,0 +1,1 @@
+xsd infrastructure\cda\CDA.xsd /classes
