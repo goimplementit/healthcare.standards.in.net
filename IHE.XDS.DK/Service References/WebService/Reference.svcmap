@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ReferenceGroup xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" ID="3aa7017a-077a-4a62-a2d8-d6438de15091" xmlns="urn:schemas-microsoft-com:xml-wcfservicemap">
+  <ClientOptions>
+    <GenerateAsynchronousMethods>false</GenerateAsynchronousMethods>
+    <GenerateTaskBasedAsynchronousMethod>true</GenerateTaskBasedAsynchronousMethod>
+    <EnableDataBinding>true</EnableDataBinding>
+    <ExcludedTypes />
+    <ImportXmlTypes>false</ImportXmlTypes>
+    <GenerateInternalTypes>false</GenerateInternalTypes>
+    <GenerateMessageContracts>false</GenerateMessageContracts>
+    <NamespaceMappings />
+    <CollectionMappings />
+    <GenerateSerializableTypes>true</GenerateSerializableTypes>
+    <Serializer>Auto</Serializer>
+    <UseSerializerForFaults>true</UseSerializerForFaults>
+    <ReferenceAllAssemblies>true</ReferenceAllAssemblies>
+    <ReferencedAssemblies />
+    <ReferencedDataContractTypes />
+    <ServiceContractMappings />
+  </ClientOptions>
+  <MetadataSources>
+    <MetadataSource Address="C:\Users\jkv\Documents\healthcare.standards.in.net\IHE.XDS.DK\XDS.b_DocumentRepository.wsdl" Protocol="file" SourceId="1" />
+  </MetadataSources>
+  <Metadata>
+    <MetadataFile FileName="xml.xsd" MetadataType="Schema" ID="58c43eae-ed99-4013-8740-685cc1191b06" SourceId="1" SourceUrl="http://www.w3.org/2001/xml.xsd" />
+    <MetadataFile FileName="rs.xsd" MetadataType="Schema" ID="24e9879a-30c4-4cb6-b967-64012acac07c" SourceId="1" SourceUrl="http://test1.ekstern-test.nspop.dk:8080/ddsrepository?xsd=../schema/ebRS/rs.xsd" />
+    <MetadataFile FileName="wsu.xsd" MetadataType="Schema" ID="0998eafa-d64f-43e0-8dfe-d213cb029964" SourceId="1" SourceUrl="http://test1.ekstern-test.nspop.dk:8080/ddsrepository?xsd=xsd/dgws/wsu.xsd" />
+    <MetadataFile FileName="ds.xsd" MetadataType="Schema" ID="12898f93-4be7-4968-952d-b2bf434b2255" SourceId="1" SourceUrl="http://test1.ekstern-test.nspop.dk:8080/ddsrepository?xsd=xsd/dgws/ds.xsd" />
+    <MetadataFile FileName="wsse.xsd" MetadataType="Schema" ID="da860125-5333-4f54-849d-a27c73e031f0" SourceId="1" SourceUrl="http://test1.ekstern-test.nspop.dk:8080/ddsrepository?xsd=xsd/dgws/wsse.xsd" />
+    <MetadataFile FileName="saml.xsd" MetadataType="Schema" ID="4d4bc3b8-ccfc-4e88-96ca-ba70bc3205b1" SourceId="1" SourceUrl="http://test1.ekstern-test.nspop.dk:8080/ddsrepository?xsd=xsd/dgws/saml.xsd" />
+    <MetadataFile FileName="XDS.xsd" MetadataType="Schema" ID="a2bfefa6-2ccc-42c9-ac49-44b32e3342c5" SourceId="1" SourceUrl="http://test1.ekstern-test.nspop.dk:8080/ddsrepository?xsd=../schema/IHE/XDS.b_DocumentRepository.xsd" />
+    <MetadataFile FileName="hsuid-1_1.xsd" MetadataType="Schema" ID="844de29c-d286-4547-a227-daa82515a267" SourceId="1" SourceUrl="http://test1.ekstern-test.nspop.dk:8080/ddsrepository?xsd=xsd/hsuid/hsuid-1_1.xsd" />
+    <MetadataFile FileName="medcom.xsd" MetadataType="Schema" ID="39255dd8-80d7-4f6c-aa4f-6dfaf2d801f1" SourceId="1" SourceUrl="http://test1.ekstern-test.nspop.dk:8080/ddsrepository?xsd=xsd/dgws/medcom.xsd" />
+    <MetadataFile FileName="DocumentRepository.wsdl" MetadataType="Wsdl" ID="cbc282ac-85b9-4cf8-9884-3277e6a6c768" SourceId="1" SourceUrl="file:///C:/Users/jkv/Documents/healthcare.standards.in.net/IHE.XDS.DK/XDS.b_DocumentRepository.wsdl" />
+    <MetadataFile FileName="rim.xsd" MetadataType="Schema" ID="c471545d-9603-49e9-a68c-e1819afa2b75" SourceId="1" SourceUrl="http://test1.ekstern-test.nspop.dk:8080/ddsrepository?xsd=../schema/ebRS/rim.xsd" />
+    <MetadataFile FileName="lcm.xsd" MetadataType="Schema" ID="d496eedc-14a5-46be-9044-78efedc91bce" SourceId="1" SourceUrl="http://test1.ekstern-test.nspop.dk:8080/ddsrepository?xsd=../schema/ebRS/lcm.xsd" />
+    <MetadataFile FileName="query.xsd" MetadataType="Schema" ID="b722197a-6147-463d-a895-8c967de8e75c" SourceId="1" SourceUrl="http://test1.ekstern-test.nspop.dk:8080/ddsrepository?xsd=../schema/ebRS/query.xsd" />
+  </Metadata>
+  <Extensions>
+    <ExtensionFile FileName="configuration91.svcinfo" Name="configuration91.svcinfo" />
+    <ExtensionFile FileName="configuration.svcinfo" Name="configuration.svcinfo" />
+  </Extensions>
+</ReferenceGroup>

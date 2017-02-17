@@ -1,0 +1,104 @@
+<?xml version="1.0" encoding="utf-8"?>
+<definitions xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:ihe="urn:ihe:iti:xds-b:2007" xmlns:rs="urn:oasis:names:tc:ebxml-regrep:xsd:rs:3.0" xmlns:wsaw="http://www.w3.org/2006/05/addressing/wsdl" xmlns:hsuid="http://www.nsi.dk/hsuid/2016/08/hsuid-1.1.xsd" xmlns:wsse="http://docs.oasis-open.org/wss/2004/01/oasis-200401-wss-wssecurity-secext-1.0.xsd" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:medcom="http://www.medcom.dk/dgws/2006/04/dgws-1.0.xsd" xmlns:saml="urn:oasis:names:tc:SAML:2.0:assertion" xmlns:wsu="http://docs.oasis-open.org/wss/2004/01/oasis-200401-wss-wssecurity-utility-1.0.xsd" name="DocumentRepository" targetNamespace="urn:ihe:iti:xds-b:2007" xmlns="http://schemas.xmlsoap.org/wsdl/">
+  <documentation>IHE XDS.b Document Repository with NPI binding
+	</documentation>
+  <types>
+    <xsd:schema targetNamespace="http://docs.oasis-open.org/wss/2004/01/oasis-200401-wss-wssecurity-secext-1.0.xsd">
+      <xsd:include schemaLocation="http://test1.ekstern-test.nspop.dk:8080/ddsrepository?xsd=xsd/dgws/wsse.xsd" />
+    </xsd:schema>
+    <xsd:schema targetNamespace="urn:oasis:names:tc:SAML:2.0:assertion">
+      <xsd:include schemaLocation="http://test1.ekstern-test.nspop.dk:8080/ddsrepository?xsd=xsd/dgws/saml.xsd" />
+    </xsd:schema>
+    <xsd:schema targetNamespace="http://www.medcom.dk/dgws/2006/04/dgws-1.0.xsd">
+      <xsd:include schemaLocation="http://test1.ekstern-test.nspop.dk:8080/ddsrepository?xsd=xsd/dgws/medcom.xsd" />
+    </xsd:schema>
+    <xsd:schema targetNamespace="http://www.nsi.dk/hsuid/2016/08/hsuid-1.1.xsd">
+      <xsd:include schemaLocation="http://test1.ekstern-test.nspop.dk:8080/ddsrepository?xsd=xsd/hsuid/hsuid-1_1.xsd" />
+    </xsd:schema>
+    <xsd:schema elementFormDefault="qualified" targetNamespace="urn:ihe:iti:xds-b:2007">
+      <xsd:include schemaLocation="http://test1.ekstern-test.nspop.dk:8080/ddsrepository?xsd=../schema/IHE/XDS.b_DocumentRepository.xsd" />
+    </xsd:schema>
+    <xsd:schema elementFormDefault="qualified" targetNamespace="urn:oasis:names:tc:ebxml-regrep:xsd:rs:3.0">
+      <xsd:include schemaLocation="http://test1.ekstern-test.nspop.dk:8080/ddsrepository?xsd=../schema/ebRS/rs.xsd" />
+    </xsd:schema>
+    <xsd:schema xmlns:query="urn:oasis:names:tc:ebxml-regrep:xsd:query:3.0" elementFormDefault="qualified" targetNamespace="urn:oasis:names:tc:ebxml-regrep:xsd:query:3.0">
+      <xsd:include schemaLocation="http://test1.ekstern-test.nspop.dk:8080/ddsrepository?xsd=../schema/ebRS/query.xsd" />
+    </xsd:schema>
+    <xsd:schema xmlns:lcm="urn:oasis:names:tc:ebxml-regrep:xsd:lcm:3.0" elementFormDefault="qualified" targetNamespace="urn:oasis:names:tc:ebxml-regrep:xsd:lcm:3.0">
+      <xsd:include schemaLocation="http://test1.ekstern-test.nspop.dk:8080/ddsrepository?xsd=../schema/ebRS/lcm.xsd" />
+    </xsd:schema>
+    <xsd:schema xmlns:lcm="urn:oasis:names:tc:ebxml-regrep:xsd:rim:3.0" elementFormDefault="qualified" targetNamespace="urn:oasis:names:tc:ebxml-regrep:xsd:rim:3.0">
+      <xsd:include schemaLocation="http://test1.ekstern-test.nspop.dk:8080/ddsrepository?xsd=../schema/ebRS/rim.xsd" />
+    </xsd:schema>
+  </types>
+  <message name="SecurityHeader">
+    <part name="security_header" element="wsse:Security" />
+  </message>
+  <message name="MedcomHeader">
+    <part name="medcom_header" element="medcom:Header" />
+  </message>
+  <message name="RetrieveDocumentSetResponse_Message">
+    <documentation>Retrieve Document Set Response</documentation>
+    <part name="body" element="ihe:RetrieveDocumentSetResponse" />
+  </message>
+  <message name="RetrieveDocumentSet_Message">
+    <documentation>Retrieve Document Set</documentation>
+    <part name="body" element="ihe:RetrieveDocumentSetRequest" />
+  </message>
+  <message name="ProvideAndRegisterDocumentSet-b_Message">
+    <documentation>Provide and Register Document Set</documentation>
+    <part name="body" element="ihe:ProvideAndRegisterDocumentSetRequest" />
+  </message>
+  <message name="ProvideAndRegisterDocumentSet-bResponse_Message">
+    <documentation>Provide And Register Document Set Response
+		</documentation>
+    <part name="body" element="rs:RegistryResponse" />
+  </message>
+  <message name="HsuidHeader">
+    <part name="hsuid_header" element="hsuid:HsuidHeader" />
+  </message>
+  <portType name="DocumentRepository_PortType">
+    <operation name="DocumentRepository_RetrieveDocumentSet">
+      <input wsaw:Action="urn:ihe:iti:2007:RetrieveDocumentSet" message="ihe:RetrieveDocumentSet_Message" />
+      <output wsaw:Action="urn:ihe:iti:2007:RetrieveDocumentSetResponse" message="ihe:RetrieveDocumentSetResponse_Message" />
+    </operation>
+    <operation name="DocumentRepository_ProvideAndRegisterDocumentSet-b">
+      <input wsaw:Action="urn:ihe:iti:2007:ProvideAndRegisterDocumentSet-b" message="ihe:ProvideAndRegisterDocumentSet-b_Message" />
+      <output wsaw:Action="urn:ihe:iti:2007:ProvideAndRegisterDocumentSet-bResponse" message="ihe:ProvideAndRegisterDocumentSet-bResponse_Message" />
+    </operation>
+  </portType>
+  <binding name="DocumentRepository_Binding" type="ihe:DocumentRepository_PortType">
+    <soap:binding transport="http://schemas.xmlsoap.org/soap/http" />
+    <operation name="DocumentRepository_RetrieveDocumentSet">
+      <soap:operation soapAction="urn:ihe:iti:2007:RetrieveDocumentSet" />
+      <input>
+        <soap:header message="ihe:SecurityHeader" part="security_header" use="literal" />
+        <soap:header message="ihe:MedcomHeader" part="medcom_header" use="literal" />
+        <soap:header message="ihe:HsuidHeader" part="hsuid_header" use="literal" />
+        <soap:body use="literal" />
+      </input>
+      <output>
+        <soap:header message="ihe:MedcomHeader" part="medcom_header" use="literal" />
+        <soap:body use="literal" />
+      </output>
+    </operation>
+    <operation name="DocumentRepository_ProvideAndRegisterDocumentSet-b">
+      <soap:operation soapAction="urn:ihe:iti:2007:ProvideAndRegisterDocumentSet-b" />
+      <input>
+        <soap:header message="ihe:SecurityHeader" part="security_header" use="literal" />
+        <soap:header message="ihe:MedcomHeader" part="medcom_header" use="literal" />
+        <soap:header message="ihe:HsuidHeader" part="hsuid_header" use="literal" />
+        <soap:body use="literal" />
+      </input>
+      <output>
+        <soap:header message="ihe:MedcomHeader" part="medcom_header" use="literal" />
+        <soap:body use="literal" />
+      </output>
+    </operation>
+  </binding>
+  <service name="DocumentRepository_Service">
+    <port name="DocumentRepository_Port_Soap12" binding="ihe:DocumentRepository_Binding">
+      <soap:address location="http://test1.ekstern-test.nspop.dk:8080/ddsrepository" />
+    </port>
+  </service>
+</definitions>
