@@ -68,20 +68,7 @@ namespace Messaging
 
 		private void notify(string path, string str)
 		{
-			var bundle = new Bundle();
-			bundle.Id = Uuid.Generate().ToString();
-			bundle.Type = Bundle.BundleType.Message;
-
-			var headerId = Uuid.Generate().ToString();
-			var header = new MessageHeader();
-			header.Id = headerId;
-			bundle.AddResourceEntry(header, "MessageHeader/" + headerId);
-
-			var resource = new FhirJsonParser().Parse<Resource>(str);
-			bundle.AddResourceEntry(resource, path);
-
-			var bundleAsJson = FhirSerializer.SerializeResourceToJson(bundle);
-			Console.WriteLine(bundleAsJson);
+			Console.WriteLine("some bundle with a messageheader and the ressource to create");
 		}
 	}
 }
