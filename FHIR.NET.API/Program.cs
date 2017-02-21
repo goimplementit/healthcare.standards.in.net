@@ -1,6 +1,8 @@
 ﻿using System;
 using Hl7.Fhir.Model;
 using Hl7.Fhir.Rest;
+using Hl7.Fhir.Serialization;
+using Hl7.Fhir.Validation;
 
 namespace FHIR.NET.API
 {
@@ -41,7 +43,15 @@ namespace FHIR.NET.API
 			{
 				var res = client.Read<Patient>("Patient/"+p1.Id);
 				Console.WriteLine("Patient by id: " + res.Name[0]);
+				var serialized = FhirSerializer.SerializeToJson(res);
+				Console.WriteLine("Serialized patient: " + serialized);
+				var backToObject = new FhirJsonParser().Parse<Patient>(serialized);
+				Console.WriteLine("Parsed patient: " + backToObject);
+
+				//res.Deceased = new FhirString("not a valid element"); 
+				//DotNetAttributeValidation.Validate(res);
 			}
+			Console.WriteLine();
 
 			/*
 			 * Find patients by name
@@ -54,43 +64,31 @@ namespace FHIR.NET.API
 				var res = client.Search(toSearchFor, "Patient");
 				Console.WriteLine("Search by name: Found " + res.Entry.Count + " with the name " + p1GivenName + " " + p1FamilyName);
 			}
+			Console.WriteLine();
 
 			/*
 			 * Find newest patient by name
 			 */
 			{
-				var toSearchFor = new SearchParams();
-				toSearchFor.Add("given", p1GivenName);
-				toSearchFor.Add("family", p1FamilyName);
-				toSearchFor.Add("_count", "1");
-				toSearchFor.Add("_sort:desc", "_lastUpdated");
-				var res = client.Search<Patient>(toSearchFor);
-				Console.WriteLine("Search by name, sort by lastupdated and limit to 1 result: " + (res.Entry[0].Resource as Patient).Name[0]);
+
 			}
+			Console.WriteLine();
 
 			/*
 			 * Find patient with the name John Doe which has been updated 5 minutes ago
 			 */
 			{
-				var toSearchFor = new SearchParams();
-				toSearchFor.Add("given", p1GivenName);
-				toSearchFor.Add("family", p1FamilyName);
-				toSearchFor.Add("_lastUpdated", ">=" + DateTime.Now.AddMinutes(-5).ToString("yyyy-MM-ddTdd:HH:mm"));
-				var res = client.Search<Patient>(toSearchFor);
-				Console.WriteLine("Search by name, get the ones lastupdated at most 5 minutes ago: " + res.Entry.Count);
+
 			}
+			Console.WriteLine();
 
 			/*
 			 * Find all observations for patients with the name John
-			 * 
-			 * http://spark.furore.com/fhir/Observation?subject.name=John
 			 */
 			{
-				var toSearchFor = new SearchParams();
-				toSearchFor.Add("subject.name", p1GivenName);
-				var res = client.Search<Observation>(toSearchFor);
-				Console.WriteLine("Find all observations for patients with the name John: " + res.Entry.Count);
+
 			}
+			Console.WriteLine();
 		}
 	}
 
