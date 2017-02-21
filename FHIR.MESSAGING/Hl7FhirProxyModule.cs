@@ -70,6 +70,7 @@ namespace Messaging
 		{
 			var bundle = new Bundle();
 			bundle.Id = Uuid.Generate().ToString();
+			bundle.Type = Bundle.BundleType.Message;
 
 			var headerId = Uuid.Generate().ToString();
 			var header = new MessageHeader();
