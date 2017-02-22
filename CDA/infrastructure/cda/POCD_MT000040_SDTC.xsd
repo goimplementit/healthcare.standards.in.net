@@ -1,5 +1,7 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<xs:schema targetNamespace="urn:hl7-org:v3" xmlns:mif="urn:hl7-org:v3/mif" xmlns="urn:hl7-org:v3" xmlns:xs="http://www.w3.org/2001/XMLSchema" elementFormDefault="qualified">
+<xs:schema targetNamespace="urn:hl7-org:v3" xmlns:mif="urn:hl7-org:v3/mif" xmlns="urn:hl7-org:v3"
+	xmlns:xs="http://www.w3.org/2001/XMLSchema" elementFormDefault="qualified"
+	xmlns:sdtc="urn:hl7-org:sdtc">
 	<!--
 *****************************************************************************************************************
 * XML schema for message type POCD_MT000040.
@@ -32,6 +34,8 @@
 ********************************************************************************************************************
 	  -->
 	<xs:annotation>
+		<xs:documentation>Manually edited to add SDTC Schema Extension (authenticator/signatureText, legalAuthenticator/signatureText), 14 July 2013</xs:documentation>
+	  <xs:documentation>Manually edited to add SDTC Schema Extensions, July 2012</xs:documentation>
 		<xs:documentation>Generated using schema builder version 2.0. Stylesheets:
 RoseTreeToMIFStaticModel.xsl version: 1.1
 StaticMifToXsd.xsl version 2.0</xs:documentation>
@@ -39,7 +43,8 @@ StaticMifToXsd.xsl version 2.0</xs:documentation>
 	<xs:include schemaLocation="../../processable/coreschemas/datatypes.xsd"/>
 	<xs:include schemaLocation="../../processable/coreschemas/voc.xsd"/>
 	<xs:include schemaLocation="../../processable/coreschemas/NarrativeBlock.xsd"/>
-	<xs:complexType name="POCD_MT000040.InfrastructureRoot.typeId">
+  <xs:import namespace="urn:hl7-org:sdtc" schemaLocation="SDTC.xsd" />
+<xs:complexType name="POCD_MT000040.InfrastructureRoot.typeId">
 		<xs:complexContent>
 			<xs:restriction base="II">
 				<xs:attribute name="root" type="uid" use="required" fixed="2.16.840.1.113883.1.3"/>
@@ -139,6 +144,9 @@ StaticMifToXsd.xsl version 2.0</xs:documentation>
 			<xs:element name="templateId" type="II" minOccurs="0" maxOccurs="unbounded"/>
 			<xs:element name="time" type="TS"/>
 			<xs:element name="signatureCode" type="CS"/>
+			<!-- Begin Extension: (SDTC) -->
+			<xs:element ref="sdtc:signatureText" minOccurs="0" maxOccurs="1"/>
+			<!-- End Extension: (SDTC) -->
 			<xs:element name="assignedEntity" type="POCD_MT000040.AssignedEntity"/>
 		</xs:sequence>
 		<xs:attribute name="nullFlavor" type="NullFlavor" use="optional"/>
@@ -416,6 +424,9 @@ StaticMifToXsd.xsl version 2.0</xs:documentation>
 			<xs:element name="text" type="ED" minOccurs="0"/>
 			<xs:element name="statusCode" type="CS" minOccurs="0"/>
 			<xs:element name="effectiveTime" type="IVL_TS" minOccurs="0"/>
+		  <!-- Begin Extension: (SDTC) -->
+		  <xs:element ref="sdtc:dischargeDispositionCode" minOccurs="0" maxOccurs="1"/>
+		  <!-- End Extension: (SDTC) -->
 			<xs:element name="priorityCode" type="CE" minOccurs="0"/>
 			<xs:element name="subject" type="POCD_MT000040.Subject" minOccurs="0"/>
 			<xs:element name="specimen" type="POCD_MT000040.Specimen" minOccurs="0" maxOccurs="unbounded"/>
@@ -664,6 +675,9 @@ StaticMifToXsd.xsl version 2.0</xs:documentation>
 			<xs:element name="templateId" type="II" minOccurs="0" maxOccurs="unbounded"/>
 			<xs:element name="time" type="TS"/>
 			<xs:element name="signatureCode" type="CS"/>
+			<!-- Begin Extension: (SDTC) -->
+			<xs:element ref="sdtc:signatureText" minOccurs="0" maxOccurs="1"/>
+			<!-- End Extension: (SDTC) -->
 			<xs:element name="assignedEntity" type="POCD_MT000040.AssignedEntity"/>
 		</xs:sequence>
 		<xs:attribute name="nullFlavor" type="NullFlavor" use="optional"/>
@@ -940,6 +954,9 @@ StaticMifToXsd.xsl version 2.0</xs:documentation>
 			<xs:element name="maritalStatusCode" type="CE" minOccurs="0"/>
 			<xs:element name="religiousAffiliationCode" type="CE" minOccurs="0"/>
 			<xs:element name="raceCode" type="CE" minOccurs="0"/>
+		  <!-- Begin Extension: (SDTC) -->
+		  <xs:element ref="sdtc:raceCode" minOccurs="0" maxOccurs="unbounded"/>
+		  <!-- End Extension: (SDTC) -->
 			<xs:element name="ethnicGroupCode" type="CE" minOccurs="0"/>
 			<xs:element name="guardian" type="POCD_MT000040.Guardian" minOccurs="0" maxOccurs="unbounded"/>
 			<xs:element name="birthplace" type="POCD_MT000040.Birthplace" minOccurs="0"/>
@@ -1018,6 +1035,9 @@ StaticMifToXsd.xsl version 2.0</xs:documentation>
 			<xs:element name="code" type="CE" minOccurs="0"/>
 			<xs:element name="quantity" type="PQ" minOccurs="0" maxOccurs="unbounded"/>
 			<xs:element name="name" type="PN" minOccurs="0" maxOccurs="unbounded"/>
+		  <!-- Begin Extension: (SDTC) -->
+		  <xs:element ref="sdtc:birthTime" minOccurs="0" maxOccurs="1"/>
+		  <!-- End Extension: (SDTC) -->
 			<xs:element name="desc" type="ED" minOccurs="0"/>
 		</xs:sequence>
 		<xs:attribute name="nullFlavor" type="NullFlavor" use="optional"/>
@@ -1275,9 +1295,16 @@ StaticMifToXsd.xsl version 2.0</xs:documentation>
 			<xs:element name="realmCode" type="CS" minOccurs="0" maxOccurs="unbounded"/>
 			<xs:element name="typeId" type="POCD_MT000040.InfrastructureRoot.typeId" minOccurs="0"/>
 			<xs:element name="templateId" type="II" minOccurs="0" maxOccurs="unbounded"/>
+		  <!-- Begin Extension: (SDTC) -->
+		  <xs:element ref="sdtc:id" minOccurs="0" maxOccurs="unbounded"/>
+		  <!-- End Extension: (SDTC) -->
 			<xs:element name="name" type="PN" minOccurs="0" maxOccurs="unbounded"/>
 			<xs:element name="administrativeGenderCode" type="CE" minOccurs="0"/>
 			<xs:element name="birthTime" type="TS" minOccurs="0"/>
+		  <!-- Begin Extension: (SDTC) -->
+		  <xs:element ref="sdtc:deceasedInd" minOccurs="0" maxOccurs="1"/>
+		  <xs:element ref="sdtc:deceasedTime" minOccurs="0" maxOccurs="1"/>
+		  <!-- End Extension: (SDTC) -->
 		</xs:sequence>
 		<xs:attribute name="nullFlavor" type="NullFlavor" use="optional"/>
 		<xs:attribute name="classCode" type="EntityClass" use="optional" fixed="PSN"/>

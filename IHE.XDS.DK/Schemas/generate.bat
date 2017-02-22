@@ -1,0 +1,1 @@
+svcutil XDS.b_DocumentRepository.wsdl *.xsd /serviceContract /t:code

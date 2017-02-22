@@ -1,1 +1,1 @@
-xsd infrastructure\cda\CDA.xsd /classes
+xsd infrastructure\cda\SDTC.xsd infrastructure\cda\CDA_SDTC.xsd /classes
